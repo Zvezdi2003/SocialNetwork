@@ -27,6 +27,21 @@ void Comment::downvote()
 	downvotesCounter++;
 }
 
+const MyString& Comment::getAuthorName() const
+{
+	return authorName;
+}
+
+const MyString& Comment::getCommentText() const
+{
+	return commentText;
+}
+
+const unsigned Comment::getCommentIndex() const
+{
+	return commentIndex;
+}
+
 void Comment::printReplies() const
 {
 	for (size_t i = 0; i < replies.getSize(); i++)
