@@ -19,6 +19,10 @@ public:
 	void upvote();
 	void downvote();
 
+	const MyString& getAuthorName() const;
+	const MyString& getCommentText() const;
+	const unsigned getCommentIndex() const;
+
 	void printReplies() const;
 
 	friend std::ostream& operator<<(std::ostream& os, const Comment& obj);
