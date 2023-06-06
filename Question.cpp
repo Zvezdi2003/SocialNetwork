@@ -10,20 +10,28 @@ Question::Question(const MyString& header, const MyString& content, unsigned id)
 	this->id = id;
 }
 
-void Question::addComment(const MyString& authorName, const MyString& text)
+//void Question::addComment(const MyString& authorName, const MyString& text)
+//{
+//	Comment comment(authorName, text, comments.getSize() + 1);
+//	comments.pushBack(comment);
+//}
+
+//void Question::printComments() const
+//{
+//	for (size_t i = 0; i < comments.getSize(); i++)
+//	{
+//		std::cout << comments[i].printReplies() << std::endl;
+//	}
+//}
+const MyString& Question::getHeader() const
 {
-	Comment comment(authorName, text, comments.getSize() + 1);
-	comments.pushBack(comment);
+	return header;
 }
 
-void Question::printComments() const
+const unsigned Question::getId() const
 {
-	for (size_t i = 0; i < comments.getSize(); i++)
-	{
-		std::cout << comments[i] << std::endl;
-	}
+	return id;
 }
-
 void Question::setId(unsigned id)
 {
 	if (id < 0)
