@@ -8,10 +8,13 @@
 class CommandPrompt
 {
 	User currentUser;
+	Topic currentTopic;
+	Question currentQuestion;
 	bool isLoggedIn = false;
 	Vector<User> users;
 	Vector<Topic> topics;
 	Vector<Question> questions;
+	Vector<Comment> comments;
 public:
 	bool registerUser(const MyString& firstName,
 		const MyString& lastName,
@@ -19,13 +22,13 @@ public:
 		unsigned id,
 		double points);
 	bool login(const MyString& firstName, const MyString& pass);
-	bool search(const MyString& text) const;
-	void open(const MyString& title) const;
-	void open(unsigned id) const;
+	void search(const MyString& text) const;
+	bool open(const MyString& title);
+	bool open(unsigned id);
 	void post(const MyString& header, const MyString& content, unsigned id);
-	void p_open(const MyString& title) const;
-	void p_open(unsigned id) const;
-	void addComment(const MyString& comment);
+	bool p_open(const MyString& title);
+	bool p_open(unsigned id);
+	void addComment(const MyString& authorName, const MyString& commentText, unsigned commentIndex);
 	void printComments(const MyString& comments) const;
 	void reply(unsigned id);
 	void upvote(unsigned id);
@@ -34,8 +37,6 @@ public:
 	void quit() const;
 	void exit() const;
 	void whoami() const;
-	void about(unsigned id);
+	void about(unsigned id) const;
 
-	friend std::ostream& operator<<(std::ostream& os, const CommandPrompt& obj);
 };
-std::ostream& operator<<(std::ostream& os, const CommandPrompt& obj);
