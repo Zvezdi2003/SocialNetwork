@@ -15,8 +15,12 @@ public:
 	Question();
 	Question(const MyString& header, const MyString& content, unsigned id);
 
-	void addComment(const MyString& authorName, const MyString& text);
-	void printComments() const;
+	/*void addComment(const MyString& authorName, const MyString& text);
+	void printComments() const;*/
+
+	const MyString& getHeader() const;
+	const MyString& getContent() const;
+	const unsigned getId() const;
 
 	void setId(unsigned id);
 
