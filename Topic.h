@@ -2,22 +2,27 @@
 #include "MyString.h"
 #include "Vector.hpp"
 #include "Question.h"
+#include "User.h"
 
 class Topic {
 	MyString title;
-	MyString creator;
+	User creator;
 	MyString description;
-	Vector<Question> questions;
 	unsigned id;
+	size_t length;
+
+	Vector<Question> questions;
+
 public:
 	Topic();
-	Topic(const MyString& title, const MyString& creator, const MyString& description, unsigned id);
-
+	Topic(const MyString& title, const User& creator, const MyString& description, unsigned id);
+	
 	const MyString& getTitle() const;
-	const MyString& getCreator() const;
+	const User& getCreator() const;
 	const MyString& getDescription() const;
-	const Vector<Question>& getQuestions() const;
 	const unsigned getId() const;
+	size_t getSize() const;
+	size_t getQuestionsCount() const;
 
 	void add(const Question& obj);
 
