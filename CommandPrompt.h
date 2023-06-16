@@ -8,20 +8,14 @@
 class CommandPrompt
 {
 	User currentUser;
-	Topic currentTopic;
 	Question currentQuestion;
 	bool isLoggedIn = false;
-	Vector<User> users;
 	Vector<Topic> topics;
-	Vector<Question> questions;
-	Vector<Comment> comments;
+	int openedTopic = -1;
+	int openedQuestion = -1;
 public:
-	bool registerUser(const MyString& firstName,
-		const MyString& lastName,
-		const MyString& password,
-		unsigned id,
-		double points);
-	bool login(const MyString& firstName, const MyString& pass);
+	void create(const MyString& topicTitle, const User& creator, const MyString& description);
+	void logout();
 	void search(const MyString& text) const;
 	bool open(const MyString& title);
 	bool open(unsigned id);
@@ -29,14 +23,13 @@ public:
 	bool p_open(const MyString& title);
 	bool p_open(unsigned id);
 	void addComment(const MyString& authorName, const MyString& commentText, unsigned commentIndex);
-	void printComments(const MyString& comments) const;
+	void printComments() const;
 	void reply(unsigned id);
-	void upvote(unsigned id);
-	void downvote(unsigned id);
-	void p_close() const;
-	void quit() const;
-	void exit() const;
+	void upvote(unsigned id, const User&);
+	void downvote(unsigned id, const User&);
+	void p_close();
+	void quit();
 	void whoami() const;
 	void about(unsigned id) const;
-
+	void list();
 };
