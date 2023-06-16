@@ -19,6 +19,7 @@ public:
 	size_t getSize() const;
 	size_t getCapacity() const;
 
+	bool contains(const T&) const;
 	void pushBack(const T&);
 	void pushBack(T&& n);
 	void pushAt(const T&, const size_t);
@@ -92,6 +93,14 @@ size_t Vector<T>::getCapacity() const {
 	return capacity;
 }
 
+template <typename T>
+bool Vector<T>::contains(const T& element) const
+{
+	for (size_t i = 0; i < size; i++)
+		if (data[i] == element)
+			return true;
+	return false;
+}
 template <typename T>
 void Vector<T>::pushBack(const T& element) {
 	if (size + 1 > capacity)
