@@ -12,7 +12,7 @@ User::User(const MyString& firstName, const MyString& lastName, const MyString& 
 	this->lastName = lastName;
 	this->password = password;
 	this->points = points;
-}  
+}
 
 User::User() {
 	usersCounter++;
@@ -39,4 +39,23 @@ const unsigned User::getId() const
 const double User::getPoints() const
 {
 	return id;
+}
+
+void User::empty()
+{
+	id = 0;
+	firstName = "";
+	lastName = "";
+	password = " ";
+	points = 0;
+}
+
+bool User::isEmpty() const
+{
+	return id == 0 && firstName == "" && lastName == "" && password == "" && points == 0;
+}
+
+void User::addPoints()
+{
+	points++;
 }
