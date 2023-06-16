@@ -26,6 +26,3 @@ bool SocialNetwork::login(const MyString& firstName, const MyString& pass)
 	}
 	return false;
 }
-SocialNetwork::SocialNetwork() {
-
-}
