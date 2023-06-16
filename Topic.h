@@ -15,7 +15,7 @@ class Topic {
 
 public:
 	Topic();
-	Topic(const MyString& title, const User& creator, const MyString& description, unsigned id);
+	Topic(const MyString& title, const User& creator, const MyString& description);
 	
 	const MyString& getTitle() const;
 	const User& getCreator() const;
@@ -24,8 +24,15 @@ public:
 	size_t getSize() const;
 	size_t getQuestionsCount() const;
 
+	void empty();
+	bool isEmpty() const;
 	void add(const Question& obj);
-
+	void printQuestions() const;
+	const Question& findQuestion(const MyString& obj)const;
+	const Question& findQuestion(unsigned id)const;
 	friend std::ostream operator<<(std::ostream os, const Topic& obj);
+
+	const Question& operator[](unsigned id)const;
+	Question& operator[](unsigned id);
 };
 std::ostream operator<<(std::ostream os, const Topic& obj);
