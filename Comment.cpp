@@ -1,4 +1,5 @@
 #include "Comment.h"
+#include "User.h"
 
 Comment::Comment()
 {
@@ -10,21 +11,39 @@ Comment::Comment(const MyString& authorName, const MyString& commentText, unsign
 	this->commentIndex = commentIndex;
 }
 
-void Comment::addReply(const char* _reply)
+void Comment::addReply(const MyString& _reply)
 {
 	MyString reply(_reply);
 
 	replies.pushBack(reply);
 }
 
-void Comment::upvote()
+void Comment::upvote(const User& user)
 {
-	upvotesCounter++;
+	for (size_t i = 0; i < upvoteUsersIds.getSize(); i++)
+	{
+		if (upvoteUsersIds[i] == user.getId())
+		{
+			upvoteUsersIds.popAt(i);
+			return;
+		}
+	}
+
+	upvoteUsersIds.pushBack(user.getId());
 }
 
-void Comment::downvote()
+void Comment::downvote(const User& user)
 {
-	downvotesCounter++;
+	for (size_t i = 0; i < downvoteUsersIds.getSize(); i++)
+	{
+		if (downvoteUsersIds[i] == user.getId())
+		{
+			downvoteUsersIds.popAt(i);
+			return;
+		}
+	}
+
+	downvoteUsersIds.pushBack(user.getId());
 }
 
 const MyString& Comment::getAuthorName() const
@@ -52,6 +71,10 @@ void Comment::printReplies() const
 
 std::ostream& operator<<(std::ostream& os, const Comment& obj)
 {
-	os << obj.authorName << obj.commentText << obj.commentIndex;
+	os << " >> " << obj.commentText << "{id:" << obj.commentIndex << "}";
 }
-	
+
+std::istream& operator>>(std::istream& os, Comment& obj)
+{
+	os >> obj.commentText >> obj.commentIndex;
+}
