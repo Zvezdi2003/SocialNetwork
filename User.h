@@ -1,15 +1,14 @@
 #pragma once
 #include "MyString.h"
 
-
 class User
 {
 	static int usersCounter;
 
+	unsigned id;
 	MyString firstName;
 	MyString lastName;
 	MyString password;
-	unsigned id;
 	double points;
 
 public:
@@ -21,7 +20,11 @@ public:
 	const MyString& getPassword() const;
 	const unsigned getId() const;
 	const double getPoints() const;
-};
+
+	void addPoints();
+	void empty();
+	bool isEmpty() const;
+}; 
 
 
 
