@@ -7,15 +7,16 @@
 #include <iostream>
 class CommandPrompt
 {
-	User currentUser;
 	Question currentQuestion;
-	bool isLoggedIn = false;
 	Vector<Topic> topics;
 	int openedTopic = -1;
 	int openedQuestion = -1;
+
+	void serialize() const;
+	void deserialize();
 public:
+	CommandPrompt();
 	void create(const MyString& topicTitle, const User& creator, const MyString& description);
-	void logout();
 	void search(const MyString& text) const;
 	bool open(const MyString& title);
 	bool open(unsigned id);
@@ -29,7 +30,8 @@ public:
 	void downvote(unsigned id, const User&);
 	void p_close();
 	void quit();
-	void whoami() const;
 	void about(unsigned id) const;
 	void list();
+
+	~CommandPrompt();
 };
