@@ -22,6 +22,17 @@ User::User() {
 	this->points = 0;
 }
 
+User& User::operator=(const User& other)
+{
+	if (this != &other)
+	{
+		firstName = other.firstName;
+		lastName = other.lastName;
+		password = other.password;
+		points = other.points;
+	}
+	return *this;
+}
 const MyString& User::getFirstName() const {
 	return firstName;
 }
