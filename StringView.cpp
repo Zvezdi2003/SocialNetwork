@@ -1,4 +1,5 @@
 #include "StringView.h"
+#include "MyString.h"
 
 StringView::StringView(const char* begin, const char* end) : _begin(begin), _end(end)
 {}
