@@ -1,14 +1,16 @@
 #pragma once
 #include <fstream>
-#include "MyString.h"
+
+class MyString;
+
 class StringView
 {
 	const char* _begin;
-	const char* _end; //1 element after the final char;
+	const char* _end;
 
 public:
 	StringView(const char* begin, const char* end);
-	StringView(const char* str); //terminatedString
+	StringView(const char* str); 
 	StringView(const MyString& string);
 
 	size_t length() const;
@@ -19,3 +21,4 @@ public:
 	friend std::ostream& operator<<(std::ostream&, const StringView& strView);
 };
 std::ostream& operator<<(std::ostream&, const StringView& strView);
+
