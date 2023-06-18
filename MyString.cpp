@@ -13,7 +13,7 @@ bool contains(const MyString& first, const MyString& second)
 		if (first[i] == second[0])
 		{
 			StringView view(first);
-			if (view.substr(0, second.length() + 1).getStr() == second)
+			if (view.substr(i, second.length() + 1).getStr() == second) 
 			{
 				return true;
 			}
@@ -24,6 +24,17 @@ bool contains(const MyString& first, const MyString& second)
 		}
 	}
 	return false;
+}
+bool isNumber(MyString& paramStr)
+{
+	for (size_t i = 0; i < paramStr.length(); i++)
+	{
+		if (paramStr[i] < '0' || paramStr[i] > '9')
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 MyString operator+(const MyString& lhs, const MyString& rhs)
@@ -101,7 +112,7 @@ void MyString::copyFrom(const MyString& other)
 
 MyString::MyString(MyString&& other) noexcept
 {
-	_data = other._data; // to function moveFrom ?
+	_data = other._data; 
 	other._data = nullptr;
 	_length = other._length;
 }
@@ -118,12 +129,12 @@ MyString& MyString::operator=(MyString&& other) noexcept
 	return *this;
 }
 
-char& MyString::operator[](size_t index) //Íåêîíñòàíòåí äîñòúï
+char& MyString::operator[](size_t index) //ÐÐµÐºÐ¾Ð½ÑÑ‚Ð°Ð½Ñ‚ÐµÐ½ Ð´Ð¾ÑÑ‚ÑŠÐ¿
 {
 	return _data[index];
 }
 
-char MyString::operator[](size_t index) const //Êîíñòàíòåí äîñòúï 
+char MyString::operator[](size_t index) const //ÐšÐ¾Ð½ÑÑ‚Ð°Ð½Ñ‚ÐµÐ½ Ð´Ð¾ÑÑ‚ÑŠÐ¿ 
 {
 	return _data[index];
 }
@@ -132,7 +143,6 @@ MyString MyString::substr(size_t begin, size_t howMany) const
 {
 	if (begin + howMany > _length)
 		throw std::length_error("Error, Substr out of range");
-
 
 	MyString res(howMany + 1);
 	for (int i = 0; i < howMany; i++)
@@ -146,6 +156,11 @@ const char* MyString::c_str() const
 	return _data;
 }
 
+void getline(std::istream& is, const MyString& str, size_t buffSize)
+{
+	is.getline(str._data, buffSize);
+}
+
 std::ostream& operator<<(std::ostream& os, const MyString& str)
 {
 	return os << str.c_str();
@@ -154,7 +169,7 @@ std::ostream& operator<<(std::ostream& os, const MyString& str)
 std::istream& operator>>(std::istream& is, MyString& str)
 {
 	char buff[1024];
-	is >> buff; // is.getLine(buff, 1024);
+	is >> buff;
 
 	delete[] str._data;
 	str._length = strlen(buff);
