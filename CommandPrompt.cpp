@@ -1,15 +1,15 @@
 #include "CommandPrompt.h"
 
 
-void CommandPrompt::logout()
+CommandPrompt::CommandPrompt()
 {
-	isLoggedIn = false;
+	deserialize();
 }
+
 void CommandPrompt::create(const MyString& topicTitle, const User& creator, const MyString& description)
 {
 	Topic topic(topicTitle, creator, description);
 	topics.pushBack(topic);
-	std::cout << "> Success!";
 }
 void CommandPrompt::search(const MyString& text) const
 {
@@ -80,9 +80,7 @@ void CommandPrompt::addComment(const MyString& authorName, const MyString& comme
 		Comment comment(authorName, commentText, topics[openedTopic][openedQuestion].getId());
 		topics[openedTopic][openedQuestion].addComment(comment);
 		std::cout << "> Posted";
-		
 	}
-	
 }
 
 void CommandPrompt::printComments() const
@@ -138,11 +136,6 @@ void CommandPrompt::quit()
 	}
 }
 
-void CommandPrompt::whoami() const
-{
-	std::cout << " >> " << currentUser.getFirstName() << ", " << currentUser.getPoints() << " points." << '\n';
-}
-
 void CommandPrompt::about(unsigned id) const
 {
 	std::cout << " >> Name: " << topics[id].getTitle(); 
@@ -157,4 +150,35 @@ void CommandPrompt::list()
 	{
 		topics[openedTopic].printQuestions();
 	}
+}
+
+void CommandPrompt::serialize() const
+{
+	std::ofstream ofs("file.bin", std::ios::out | std::ios::binary);
+	if (!ofs.is_open())
+	{
+		throw std::logic_error("It could not open");
+	}
+
+	ofs.write((const char*)&currentQuestion, sizeof(currentQuestion));
+	ofs.write((const char*)&topics, sizeof(topics));
+
+	ofs.close();
+}
+void CommandPrompt::deserialize()
+{
+	std::ifstream ifs("file.bin", std::ios::in | std::ios::binary);
+	if (!ifs.is_open())
+	{
+		throw std::logic_error("It could not open");
+	}
+	ifs.read((char*)&currentQuestion, sizeof(currentQuestion));
+	ifs.read((char*)&topics, sizeof(topics));
+	ifs.close();
+}
+
+
+CommandPrompt::~CommandPrompt()
+{
+	serialize();
 }
