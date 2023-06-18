@@ -11,7 +11,7 @@ class MyString
 	void copyFrom(const MyString& data);
 	void free();
 
-	explicit MyString(size_t capacity); //for memory allocation. How much bytes to allocate
+	explicit MyString(size_t capacity); 
 public:
 
 	MyString();
@@ -33,15 +33,18 @@ public:
 
 	const char* c_str() const;
 
-	friend bool contains(const MyString& first, const MyString& second);
+	friend void getline(std::istream& is, const MyString&, size_t buffSize);
 
 	friend MyString operator+(const MyString& lhs, const MyString& rhs);
 	friend std::istream& operator>>(std::istream&, MyString& str);
 };
 
 bool contains(const MyString& first, const MyString& second);
+bool isNumber(MyString& paramStr);
+void getline(std::istream& is, const MyString&, size_t buffSize);
 
-std::ostream& operator<<(std::ostream& os, const MyString& str);
+std::ostream& operator<<(std::ostream& os, const MyString& str); 
+std::istream& operator>>(std::istream&, MyString& str);
 
 bool operator<(const MyString& lhs, const MyString& rhs);
 bool operator<=(const MyString& lhs, const MyString& rhs);
