@@ -14,6 +14,7 @@ class User
 public:
 	User();
 	User(const MyString& firstName, const MyString& lastName, const MyString& password, double points);
+	User& operator=(const User& other);
 
 	const MyString& getFirstName() const;
 	const MyString& getLastName() const;
@@ -24,6 +25,7 @@ public:
 	void addPoints();
 	void empty();
 	bool isEmpty() const;
+
 }; 
 
 
