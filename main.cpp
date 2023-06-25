@@ -8,7 +8,8 @@ int main()
 {
 	SocialNetwork s;
 	CommandPrompt c;
-
+	User u;
+	
 	MyString command;
 	std::cout << "> ";
 	std::cin >> command;
@@ -128,7 +129,8 @@ int main()
 			std::cin >> authorName;
 			std::cin >> commentText;
 			c.addComment(authorName, commentText, 0);
-
+			u.addPoints();
+			
 			std::cout << std::endl;
 		}
 
