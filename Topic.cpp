@@ -72,7 +72,7 @@ std::ostream& operator<<(std::ostream& os, const Topic& obj)
 {
 	return os << obj.getTitle() << obj.getDescription() << obj.getCreator().getFirstName() << obj.getCreator().getLastName() << obj.getCreator().getId() << obj.getId();
 }
-const Question& Topic::findQuestion(const MyString& obj)const {
+const Question& Topic::findQuestion(const MyString& title)const {
 	for (size_t i = 0; i < questions.getSize(); i++)
 	{
 		if (questions[i].getHeader() == title)
